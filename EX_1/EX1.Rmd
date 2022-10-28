@@ -1,7 +1,7 @@
 ---
-title: "EX5"
+title: "EX1"
 author: "roi hezkiyahu"
-date: "13 5 2022"
+date: "28 10 2022"
 output: html_document
 ---
 
@@ -50,7 +50,9 @@ L(y,p) = \Pi_{i=1}^kp_i^{\sum_{l=1}^n{I(y_l = i)}} = \frac{n!}{\Pi_{i=1}^k\sum_{
 \\
 \textrm{denote } \frac{n!}{\Pi_{i=1}^k\sum_{l=1}^n{I(y_l = i)}} =: e^{d(y)}
 \\
-loglik(y,p) = d(y) +(n-\sum_{j=1}^nI(y_i<k)) ln(1-\sum_{m=1}^{k-1}p_m) + \sum_{i=1}^{k-1}[ln(p_i){\sum_{l=1}^n{I(y_l = i)}}] = d(y)+ nln(1-\sum_{m=1}^{k-1}p_m)+\sum_{i=1}^{k-1}[ln\left(\frac{p_i}{1-\sum_{m=1}^{k-1}p_m}\right){\sum_{l=1}^n{I(y_l = i)}}]
+loglik(y,p) = d(y) +(n-\sum_{j=1}^nI(y_i<k)) ln(1-\sum_{m=1}^{k-1}p_m) + \sum_{i=1}^{k-1}[ln(p_i){\sum_{l=1}^n{I(y_l = i)}}] =
+\\
+=d(y)+ nln(1-\sum_{m=1}^{k-1}p_m)+\sum_{i=1}^{k-1}[ln\left(\frac{p_i}{1-\sum_{m=1}^{k-1}p_m}\right){\sum_{l=1}^n{I(y_l = i)}}]
 \\
 \textrm{ denote: } T_j(y) = \sum_{l=1}^n{I(y_l = j)} \quad \forall i<k, \quad C_j(p) = ln\left(\frac{p_j}{1-\sum_{m=1}^{k-1}p_m}\right) \quad \forall i<k
 \quad S(p) = nln(1-\sum_{m=1}^{k-1}p_m)
@@ -70,9 +72,7 @@ E(g(T_j(y))) = E(g(x_j)) = \sum_{i=0}^nP(x_j=i)g(x_j) = 0 \iff P(x_i=j) =0 \ \fo
 P(x_i=j) > 0 \ thus \ E(g(T_j(y))) =0 \iff g(x_j)=0
 \\
 \textrm{we get the T is complete}
-$$
-
-$$
+\\
 E(T_j) = E(\sum_{l=1}^n{I(y_l = j)}) = \sum_{l=1}^n{E(I(y_l = j))} = np_j
 \\
 E(T) = n(p_1,\ldots,p_{k-1})^t =: n\tilde{p}^t
@@ -81,16 +81,18 @@ V(T_j) = n(p_j)(1-p_j); \quad(\textrm{we know the variance for binomial distribu
 \\
 V(T_i + T_j) = n(p_j+p_i)(1-p_j-p_i);  \quad(T_i + T_j \sim B(n,p_i+p_j))
 \\
-
 2Cov(T_j,T_i) = V(T_i + T_j) - V(T_j) - V(T_i) = n(p_j+p_i)(1-p_j-p_i) - n(p_j)(1-p_j) - n(p_i)(1-p_i) = 
 \\
 =np_j + np_i - np_j^2 - 2np_jp_i-np_i^2 - np_j + np_j^2 - np_i + np_i^2 = -2np_jp_i \Rightarrow  Cov(T_j,T_i) = -np_jp_i
 \\
 V(T) = -n(\tilde{p})\tilde{p}^t + Diag(n\tilde{p})
 $$
+
+
 # Q3
 
 ![](Q3.png)
+
 
 $$
 x_0 := \underline1
@@ -98,14 +100,13 @@ x_0 := \underline1
 f_{\theta_i}(y) = exp \{ \eta_i T_i(y_i) + d_i(\theta_i) +S(y_i)\}
 \\
 L(\theta,y) = \Pi_{i=1}^nf_{\theta_i}(y) = exp\{  \sum_{i=1}^n\eta_iT_i(y_i) + nd(\theta) +\sum_{i=1}^nS(y_i)\} = 
-exp\{  \sum_{i=1}^n\sum_{j=0}^{p+1}\beta_jx_{ji}T_i(y_i) + nd(\theta) +\sum_{i=1}^nS(y_i)\} = exp\{  \sum_{j=0}^{p+1}\beta_j\sum_{i=1}^nx_{ji}T_i(y_i) + nd(\theta) +\sum_{i=1}^nS(y_i)\}
+\\
+=exp\{  \sum_{i=1}^n\sum_{j=0}^{p+1}\beta_jx_{ji}T_i(y_i) + nd(\theta) +\sum_{i=1}^nS(y_i)\} = exp\{  \sum_{j=0}^{p+1}\beta_j\sum_{i=1}^nx_{ji}T_i(y_i) + nd(\theta) +\sum_{i=1}^nS(y_i)\}
 \\
 C_j(\theta) = \beta_j, \quad T'_j(y) = \sum_{i=1}^nx_{ji}T_i(y_i)
 \\
 \textrm{thus the distribution belongs to the p+1 paramaters exponential family with the above sufficent statistic and natural paraamters}
-$$
-
-$$
+\\
 Y_i \sim Pois(\lambda_i)
 \\
 \textrm{we saw that a sufficent statistic in the poission regression is: } \sum_{j=1}^{n_i}Y_{ij}
@@ -121,7 +122,7 @@ $$
 
 ![](Q4.png)
 
-### 1
+### 4.1
 
 $$
 L(\lambda_1,\lambda_2,X_1,X_2,X_3) = \Pi_{k=1}^3(\Pi_{i=1}^{n_k} x_{ki}!)^{-1}\lambda_1^{\sum_{j=1}^{n_1}x_{1j}}e^{-n_1 \lambda_1}\lambda_2^{\sum_{j=1}^{n_2}x_{2j}}e^{-n_2 \lambda_2}(\lambda_2\lambda_1)^{\sum_{j=1}^{n_3}x_{3j}}e^{-n_3 \lambda_2\lambda_1}
@@ -137,10 +138,12 @@ denote: \  T_1(X) = (\sum_{j=1}^{n_1}x_{1j} + \sum_{j=1}^{n_3}x_{3j}), \quad T_2
 \\
 the \ set \ \{(ln(\lambda_1),ln(\lambda_2)) ; \lambda_i \in \mathbb{R}^+\} \ contains \ an \ open \ 2d \ rectangele \ thus \ the  \ sufficent \ statistic \ is \ complete \ (and \ minimal)
 \\
-\textrm{thus the joint distribution of } (X_1,X_2,X_3) \textrm{ belongs to the 2 paramater exponential family with the minimal and complete sufficent statistic } (T_1(X),T_2(X))
+\textrm{thus the joint distribution of } (X_1,X_2,X_3) \textrm{ belongs to the 2 paramater exponential family with the minimal and complete sufficent statistic: }
+\\
+(T_1(X),T_2(X))
 $$
 
-### 2
+### 4.2
 
 $$
 L(\lambda_1,\lambda_2,X_1,X_2,X_3) = \Pi_{k=1}^3(\Pi_{i=1}^{n_k} x_{ki}!)^{-1}\lambda_1^{\sum_{j=1}^{n_1}x_{1j}}e^{-n_1 \lambda_1}\lambda_2^{\sum_{j=1}^{n_2}x_{2j}}e^{-n_2 \lambda_2}(\lambda_2+\lambda_1)^{\sum_{j=1}^{n_3}x_{3j}}e^{-n_3 (\lambda_2+\lambda_1)}
