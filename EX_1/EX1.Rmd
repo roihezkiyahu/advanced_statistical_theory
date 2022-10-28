@@ -137,12 +137,37 @@ denote: \  T_1(X) = (\sum_{j=1}^{n_1}x_{1j} + \sum_{j=1}^{n_3}x_{3j}), \quad T_2
 \\
 the \ set \ \{(ln(\lambda_1),ln(\lambda_2)) ; \lambda_i \in \mathbb{R}^+\} \ contains \ an \ open \ 2d \ rectangele \ thus \ the  \ sufficent \ statistic \ is \ complete \ (and \ minimal)
 \\
-\textrm{thus the joint distribution of } (X_1,X_2,X_3) \textrm{ belongs to the exponential family with the minimal and complete sufficent statistic } (T_1(X),T_2(X))
+\textrm{thus the joint distribution of } (X_1,X_2,X_3) \textrm{ belongs to the 2 paramater exponential family with the minimal and complete sufficent statistic } (T_1(X),T_2(X))
 $$
 
 ### 2
 
 $$
-
+L(\lambda_1,\lambda_2,X_1,X_2,X_3) = \Pi_{k=1}^3(\Pi_{i=1}^{n_k} x_{ki}!)^{-1}\lambda_1^{\sum_{j=1}^{n_1}x_{1j}}e^{-n_1 \lambda_1}\lambda_2^{\sum_{j=1}^{n_2}x_{2j}}e^{-n_2 \lambda_2}(\lambda_2+\lambda_1)^{\sum_{j=1}^{n_3}x_{3j}}e^{-n_3 (\lambda_2+\lambda_1)}
+\\
+loglik(\lambda_1,\lambda_2,X_1,X_2,X_3) = d(X) -n_1\lambda_1 -n_2\lambda_2 -n_3\lambda_1 - n_3\lambda_2 + \sum_{j=1}^{n_1}x_{1j}ln(\lambda_1) + \sum_{j=1}^{n_2}x_{2j}ln(\lambda_2) + \sum_{j=1}^{n_3}x_{3j}ln(\lambda_1+\lambda_2) =
+\\
+= d(X) + S'(\lambda) + \sum_{j=1}^{n_1}x_{1j}ln(\lambda_1) + \sum_{j=1}^{n_2}x_{2j}ln(\lambda_2) + \sum_{j=1}^{n_3}x_{3j}ln(\lambda_1+\lambda_2)
+\\
+denote: \  T'_1(X) = \sum_{j=1}^{n_1}x_{1j}, \quad T'_2(X) = \sum_{j=1}^{n_2}x_{2j}, \quad T'_3(X) = \sum_{j=1}^{n_3}x_{3j}
+\\
+C'_1(\lambda) = ln(\lambda_1), \quad C'_2(\lambda) = ln(\lambda_2) , \quad C'_3(\lambda) = ln(\lambda_1 + \lambda_2)
+\\
+\textrm{thus the joint distribution of } (X_1,X_2,X_3) \textrm{ belongs to the 3 paramater exponential family with the sufficent statistic } (T_1(X),T_2(X),T_3(X))
 $$
 
+$$
+\frac{L(\lambda_1,\lambda_2,X_1,X_2,X_3)}{L(\lambda_1,\lambda_2,X'_1,X'_2,X'_3)} = 
+\frac{\Pi_{k=1}^3(\Pi_{i=1}^{n_k} x_{ki}!)^{-1}\lambda_1^{\sum_{j=1}^{n_1}x_{1j}}e^{-n_1 \lambda_1}\lambda_2^{\sum_{j=1}^{n_2}x_{2j}}e^{-n_2 \lambda_2}(\lambda_2+\lambda_1)^{\sum_{j=1}^{n_3}x_{3j}}e^{-n_3 (\lambda_2+\lambda_1)}}
+{\Pi_{k=1}^3(\Pi_{i=1}^{n_k} x'_{ki}!)^{-1}\lambda_1^{\sum_{j=1}^{n_1}x'_{1j}}e^{-n_1 \lambda_1}\lambda_2^{\sum_{j=1}^{n_2}x'_{2j}}e^{-n_2 \lambda_2}(\lambda_2+\lambda_1)^{\sum_{j=1}^{n_3}x'_{3j}}e^{-n_3 (\lambda_2+\lambda_1)}}
+\\
+\textrm{the liklihood ratio is independet of } \lambda \textrm{ if:}
+\\
+\sum_{j=1}^{n_1}x_{1j} = \sum_{j=1}^{n_1}x'_{1j}, \quad \sum_{j=1}^{n_2}x_{2j}=\sum_{j=1}^{n_2}x'_{2j}, \quad \sum_{j=1}^{n_3}x'_{3j} = \sum_{j=1}^{n_3}x'_{3j}
+\\
+\textrm{thus the sufficent statistic we derived above is minimal}
+$$
+
+$$
+E(g(T_i(X))) = \sum_{k=0}^\infty P(T_i(X) = k)g(k) = 0 \iff g(k) = 0 \Rightarrow \textrm{T is complete}
+$$
