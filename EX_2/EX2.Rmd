@@ -56,7 +56,7 @@ $$
 
 
 $$
-define \  T_s(y) \in {0,1}, T_s = 1 \iff Y_1 >t 
+define \  T_s(y) \in \{0,1\}, T_s = 1 \iff Y_1 >t 
 \\
 E(T_s(y)) = P(Y_1 >t) = e^{-\theta y} \Rightarrow bias(T_s(y)) = 0
 \\
@@ -75,7 +75,7 @@ $$
 
 
 $$
-y1,\ldots,y_m \sim f_{\mu,\sigma^2}  \Rightarrow \bar Y \overset{.}{\sim}  N(\mu,\frac{\sigma^2}{n})
+y_1,\ldots,y_m \sim f_{\mu,\sigma^2}  \Rightarrow \bar Y \overset{.}{\sim}  N(\mu,\frac{\sigma^2}{n})
 \\
 \textrm{ in the case: }  \mu = 0:
 \bar Y \overset{.}{\sim}  N(0,\sigma^2) \Rightarrow \frac{\bar Y \sqrt n}{\sigma} \overset{.}{\sim} N(0,1) \Rightarrow (\frac{\bar Y \sqrt n}{\sigma})^2 \overset{.}{\sim} \chi_n^2  \Rightarrow
@@ -87,7 +87,7 @@ y1,\ldots,y_m \sim f_{\mu,\sigma^2}  \Rightarrow \bar Y \overset{.}{\sim}  N(\mu
 \\
 \sqrt n(\bar Y^2 - \mu^2) \overset{.}{\sim} N(0,4\mu^2\sigma^2) \Rightarrow \bar Y^2 \overset{.}{\sim} N(\mu^2,4\mu^2\sigma^2n^{-1})
 \\
-e^{-\bar Y} \overset{.}{\sim} N(e^{-\mu},  e^{-2\mu}\sigma^2)
+e^{-\bar Y} \overset{.}{\sim} N(e^{-\mu},  e^{-2\mu}\sigma^2n^{-1})
 $$
 
 
@@ -128,7 +128,7 @@ $$
 ### d
 
 $$
-\hat \theta \textrm{ is no a CAN estimator: }
+\hat \theta \textrm{ is not a CAN estimator: }
 \\
 P(\sqrt n(\hat\theta- \theta)<t) = P(\hat\theta<t/\sqrt n + \theta) = 1-e^{n(t/\sqrt n-\theta +\theta)} = 1-e^{-\sqrt n t}  = F(exp(\sqrt n))
 \\
@@ -180,7 +180,7 @@ $$
 \\
 \textrm{we know from class that: } Y_\alpha = \frac{E(\psi^2)}{E^2(\psi')}
 \\
-\textrm{but in our case: } \psi = 0
+\textrm{but in our case: } \psi' = 0
 \\
 \textrm{thus the variance is not finite}
 $$
@@ -223,9 +223,120 @@ $$
 
 ![](Q6.png)
 
+### a
+
+$$
+\hat p = \frac{\sum_{i=1}^nyi}{n}
+\\
+\hat p \overset{.}{\sim} N(p, \frac{1}{nI^*(p)})
+\\
+I^*(p) = - E(l'') = -E[(y_i ln(p) + (1-y_i)ln(1-p))''] = -E[(\frac{y_i}{p^2} + \frac{1-y_i}{(1-p)^2})] = \frac{1}{1-p} \Rightarrow \hat p \overset{.}{\sim} N(p, \frac{p(1-p)}{n})
+\\
+Wald \ test: (\hat p - p_0)^2  I(\hat p) = (\hat p - p_0)^2  \frac{n}{p_0(1-p_0)}  = \frac{n(\bar y -p_0)^2}{p_0(1-p_0)}> \chi_{1,1-\alpha}^2 
+\\
+Wilks \ test: 2 l(\hat p)- 2 l( p_0) = 2 (n\bar y \ ln(\frac{\bar y}{p_0}) + n(1- \bar y)ln (\frac{1-\bar y}{1-p_0}))  > \chi_{1,1-\alpha}^2
+\\
+Rao \ test: \frac{(l'(p_0))^2}{I(p_0)} = (\frac{n\bar y}{p_0} - \frac{n(1-\bar y)}{1-p_0})^2 \frac{p_0(1-p_0)}{n} =  \frac{n^2(\bar y -p_0)^2}{p_0^2(1-p_0)^2}\frac{p_0(1-p_0)}{n} =
+\frac{n(\bar y -p_0)^2}{p_0(1-p_0)}  > \chi_{1,1-\alpha}^2 
+$$
+
+### b
+
+$$
+\textrm{we can see that Rao and Wald are equivelent, let's use tylor expention for the wilks test:}
+\\
+Wilks = 2 l(\hat p)- 2 l( p_0)  \approx l''(\hat p)(\hat p - p_0)^2 = (\frac{n \bar y}{\bar y ^2} + \frac{n(1-\bar y)}{(1-\bar y)^2}) (\hat p - p_0)^2 = (\frac{n}{\bar y} + \frac{n}{(1-\bar y)}) (\hat p - p_0)^2 = 
+\\
+=(\frac{n}{\bar y(1-\bar y)}) (\hat p - p_0)^2 \underset{CLT}{\overset{n \to \infty}{\longrightarrow}} (\frac{n}{ p(1- p)}) (\hat p - p_0)^2
+\\
+\textrm{under the null } p = p_0 \textrm{ thus wilks is equivelent to wald and rao}
+$$
 
 # Q7
 
 ![](Q7.png)
 
+### a
+
+
+$$
+L = \Pi_{j=1}^L\Pi_{i=1}^n \lambda_j ^ {y_{ij}}e^{-\lambda_j} (y_{ij}!)^{-1} = \Pi_{j=1}^L\lambda_j ^ {\sum_i y_{ij}}e^{-n\lambda_j} (\Pi_i y_{ij}!)^{-1} \Rightarrow
+\\
+l = \sum_j [(\sum_i y_{ij}) ln(\lambda_j)-n \lambda_j + f(y) ]
+\\
+\textrm{ take the deravetive with respect to } \lambda_j:
+\\
+\frac{\partial l}{\partial \lambda_j} = \frac{(\sum_i y_{ij})}{\lambda_j} - n = 0 \iff \lambda_j= \bar y_j
+\\
+\hat \lambda_{MLE} = (\bar y_1, \ldots, \bar y_L)
+\\
+E(\hat \lambda_{MLE}) = \lambda, \quad V(\lambda) = I \lambda
+\\
+\textrm{thus from CLT we get: }
+\\
+\sqrt(n)(\hat \lambda_{MLE} - \lambda) \overset{.}{\sim} N(0, V(\lambda))
+$$ 
+
+
+### b
+
+
+$$
+\textrm{define } g(\lambda) = (\lambda_i/\sum_j \lambda_j)_{i=1}^n
+\\
+p = g(\lambda)
+\\
+\textrm{thus from the delta therom: }
+\\
+\hat p = (\hat \lambda_i/\sum_j \hat \lambda_j)_{i=1}^n \overset{.}{\sim} N(p, \nabla g ^T V(\lambda) \nabla g)
+\\
+\nabla g(\lambda) = (\frac{\sum_j \lambda_j - \lambda_i}{(\sum_j \lambda_j)^2})_{i=1}^n
+\\
+[\nabla g ^T V(\lambda) \nabla g]_{ik} = \begin{align*}
+    y = 
+    \begin{cases}
+        (\frac{\sum_j \lambda_j - \lambda_i}{(\sum_j \lambda_j)^2})^2\lambda_i, & \text{if } i = k \\
+        0, & \text{if } i \ne k
+    \end{cases}
+\end{align*}
+$$
+
+$$
+\textrm{100(1-a)% CI is: }
+\\
+\hat p \pm Z_{1-\alpha/2}* \sqrt {\nabla g(\hat \lambda) ^T V(\hat \lambda) \nabla g(\hat \lambda) n^{-1}}
+$$
+
+### c
+
+
+$$
+\text{we can use the wilks test: }
+\\
+H_0: \lambda_1 = \ldots =  \lambda_L
+\\
+H_1: \text{otherwise}
+\\
+\text{wilks test: }2 l(\hat \lambda) - 2 l(\lambda_0)\sim \chi^2_L
+\\
+l(\lambda_0) = \sum_i\sum_jy_{ij}ln(\lambda_0) - nL\lambda_0 - f(y)=  ln(\bar y)\sum_i\sum_jy_{ij} - nL\bar y = ln(\bar y)\sum_i\sum_jy_{ij} - n\sum_j \bar y_j
+\\
+l(\hat \lambda) = \sum_j[\sum_i y_{ij} ln(\bar y_j)]- n\bar y_j
+\\
+\text{plug it back in the wilks test and we will reject } H_0 \text{ if:}
+\\
+2(\sum_j[\sum_i y_{ij} ln(\bar y_j)]- ln(\bar y)\sum_i\sum_jy_{ij}) > \chi^2_{L, 1-\alpha}
+$$
+
+
+### d
+
+
+$$
+\text{difine s as the wilks statistic: }
+\\
+s = 2(150ln(10) + 180ln(12) + 225ln(15) - ln(37/3)555) = 15.30527 > 7.814 = \chi^2_{3, 0.95}
+\\
+\text{thus we reject the null at 95% confidence}
+$$
 
