@@ -7,4 +7,6 @@ the topics are:
 * MLE
 * M estimators
 * asymptotic statistics, convergence, consistency
-* KDE
+* Kernel density estimations
+* bayesian statistics
+* decision theory
