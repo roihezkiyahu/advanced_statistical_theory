@@ -75,6 +75,7 @@ $$
 \hat \lambda = E_{\lambda|y}[\lambda|y] = \frac{T(y)+1}{\theta+n}
 \\
 \hat p = \hat P(Y=0) = exp\{{-\frac{T(y)+1}{\theta+n}}\}
+
 $$
 
 ### Q3.3
@@ -84,7 +85,7 @@ L(\lambda ; y) = \Pi_i f(y_i|\lambda) = e^{-n\lambda}\cdot \frac{\lambda^{T(y)}}
 \\
 \hat \lambda_{MLE} = \bar y
 \\
-\bar y = \frac{T(y)+1}{\theta+n} \Rightarrow \hat \theta_{MLE} = \frac{T(y)+1}{\bar y} + n = \frac{2n\bar y +1}{\bar y}
+\bar y = \frac{T(y)+1}{\theta+n} \Rightarrow \hat \theta_{MLE} = \frac{T(y)+1}{\bar y} - n = \frac{1}{\bar y}
 $$
 
 # Q4
